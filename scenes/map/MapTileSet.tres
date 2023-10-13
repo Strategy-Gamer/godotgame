@@ -1,0 +1,30 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bujbpj5wxi8q8"]
+
+[ext_resource type="Texture2D" uid="uid://41w0cmiy216i" path="res://graphics/tiles/BaseTerrainHexes.png" id="1_hhasv"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2of52"]
+texture = ExtResource("1_hhasv")
+margins = Vector2i(0, 8)
+separation = Vector2i(0, 16)
+texture_region_size = Vector2i(128, 112)
+1:0/0 = 0
+1:0/0/custom_data_0 = "Sea"
+2:0/0 = 0
+2:0/0/custom_data_0 = "Forest"
+4:0/0 = 0
+4:0/0/custom_data_0 = "Mountains"
+0:0/0 = 0
+0:0/0/custom_data_0 = "Grassland"
+3:0/0 = 0
+3:0/0/custom_data_0 = "Snow"
+5:0/0 = 0
+5:0/0/custom_data_0 = "Ocean"
+
+[resource]
+tile_shape = 3
+tile_offset_axis = 1
+tile_size = Vector2i(128, 112)
+terrain_set_0/mode = 0
+custom_data_layer_0/name = "Type"
+custom_data_layer_0/type = 4
+sources/1 = SubResource("TileSetAtlasSource_2of52")

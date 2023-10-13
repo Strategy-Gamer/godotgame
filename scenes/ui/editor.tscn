@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://bov3gfkl3iskb"]
+
+[ext_resource type="Script" path="res://scenes/ui/editor.gd" id="1_lej75"]
+[ext_resource type="PackedScene" uid="uid://bere7hw7cpiao" path="res://scenes/ui/terrain_select_button.tscn" id="2_ui2ry"]
+
+[node name="Editor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lej75")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -106.0
+offset_right = 185.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TerrainSelection" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TerrainSelectButton" parent="PanelContainer/MarginContainer/TerrainSelection" instance=ExtResource("2_ui2ry")]
+layout_mode = 2

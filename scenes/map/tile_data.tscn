@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckj4pmvms0cut"]
+
+[ext_resource type="Script" path="res://scenes/map/tile_data.gd" id="1_0v50h"]
+[ext_resource type="PackedScene" uid="uid://bva0p7nwirqfd" path="res://scenes/map/tile_info.tscn" id="2_jo6j2"]
+
+[node name="TileData" type="Node"]
+script = ExtResource("1_0v50h")
+
+[node name="TileInfo" parent="." instance=ExtResource("2_jo6j2")]
