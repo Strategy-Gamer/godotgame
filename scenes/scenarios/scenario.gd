@@ -17,14 +17,18 @@ func _process(delta):
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-			var global_clicked = $Camera.get_global_mouse_position()
-			$Map.create_map()
+			var global_clicked = $Camera.get_global_mouse_position() as Vector2
+			var map_clicked = $Map.local_to_map(global_clicked) as Vector2i
+			if $Map.tiles.has(map_clicked):
+				$Map.tiles[map_clicked].click()
 		elif event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
 			$Camera.position_smoothing_enabled = false
 			var global_clicked = $Camera.get_global_mouse_position()
 			$Camera.position = global_clicked
+		elif event.button_index == MOUSE_BUTTON_MIDDLE and event.is_pressed():
+			$Map.create_map()
 				
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			$Camera.zoom *= 0.9
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			$Camera.zoom *= 1.1
+			$Camera.zoom *= 1.1	

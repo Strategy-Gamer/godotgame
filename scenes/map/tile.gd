@@ -1,14 +1,20 @@
 extends Node2D
 class_name Tile
 
-var texture: Texture2D
 var mapLoc: Vector2i
+var tileType: TileType
 
-func init(loc: Vector2i, pos: Vector2):
+func _init(loc: Vector2i, pos: Vector2, type: TileType):
 	# Initializes the tile to a location
 	mapLoc = loc
 	position = pos
-	texture = $Image.texture
+	tileType = type
 	
-func click():
-	print("Clicked ", mapLoc)
+func click() -> Tile:
+	print("Clicked ", mapLoc, ": ", tileType.tile_name)
+	return self
+
+func changeType(type: TileType) -> Tile:
+	tileType = type
+	# TODO: Implement changes to tile behavior
+	return self

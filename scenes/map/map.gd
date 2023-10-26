@@ -1,6 +1,17 @@
 extends TileMap
 class_name GameMap
 
+var tiles : Dictionary
+var tileTypes = {
+	"Blank": TileType.new("Blank", Vector2(0,0)),
+	"Sea": TileType.new("Sea", Vector2(1,0)),
+	"Ocean": TileType.new("Ocean", Vector2(5,0)),
+	"Grassland": TileType.new("Grassland", Vector2(0,0)),
+	"Forest": TileType.new("Forest", Vector2(2,0)),
+	"Mountain": TileType.new("Mountain", Vector2(4,0)),
+	"Snow": TileType.new("Snow", Vector2(3,0))
+}
+
 # Tile indices
 const BLANK = Vector2(0,0)
 const WATER = Vector2(5,0)
@@ -64,15 +75,26 @@ func _generate_map(seed: int, noise_type : int):
 			var elevation = 1.0 - center_offset * 1.25 + noise_value * 0.3
 
 			if elevation <= SHALLOW_WATER_THRESHOLD:
-				set_cell(0, Vector2i(x, y), 1, WATER)
+				set_hex(Vector2i(x, y), "Ocean")
 			elif elevation <= LAND_THRESHOLD:
-				set_cell(0, Vector2i(x, y), 1, SHALLOW_WATER)
+				set_hex(Vector2i(x, y), "Sea")
 			elif elevation <= FOREST_THRESHOLD:
-				set_cell(0, Vector2i(x, y), 1, LAND)
+				set_hex(Vector2i(x, y), "Grassland")
 			elif elevation <= MOUNTAIN_THRESHOLD:
-				set_cell(0, Vector2i(x, y), 1, FOREST)
+				set_hex(Vector2i(x, y), "Forest")
 			elif elevation <= MOUNTAIN_PEAK_THRESHOLD:
-				set_cell(0, Vector2i(x, y), 1, MOUNTAIN)
+				set_hex(Vector2i(x, y), "Mountain")
 			else:
-				set_cell(0, Vector2i(x, y), 1, MOUNTAIN_PEAK)
+				set_hex(Vector2i(x, y), "Snow")
 			#set_cell(1, Vector2i(x, y), 0, BLANK)
+
+func set_hex(location: Vector2i, type_name : String):
+	var type = tileTypes[type_name] as TileType
+	var tile
+	if tiles.has(location):
+		tile = tiles[location] as Tile
+		tile.changeType(type)
+	else:
+		tile = Tile.new(location, map_to_local(location), type)
+		tiles[location] = tile
+	set_cell(0, location, 1, type.graphic_loc)

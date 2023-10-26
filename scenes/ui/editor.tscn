@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bov3gfkl3iskb"]
+[gd_scene load_steps=2 format=3 uid="uid://bov3gfkl3iskb"]
 
 [ext_resource type="Script" path="res://scenes/ui/editor.gd" id="1_lej75"]
-[ext_resource type="PackedScene" uid="uid://bere7hw7cpiao" path="res://scenes/ui/terrain_select_button.tscn" id="2_ui2ry"]
 
 [node name="Editor" type="Control"]
 layout_mode = 3
@@ -31,5 +30,33 @@ theme_override_constants/margin_bottom = 10
 [node name="TerrainSelection" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="TerrainSelectButton" parent="PanelContainer/MarginContainer/TerrainSelection" instance=ExtResource("2_ui2ry")]
+[node name="GrassButton" type="Button" parent="PanelContainer/MarginContainer/TerrainSelection"]
 layout_mode = 2
+text = "Grassland"
+
+[node name="SeaButton" type="Button" parent="PanelContainer/MarginContainer/TerrainSelection"]
+layout_mode = 2
+text = "Sea"
+
+[node name="OceanButton" type="Button" parent="PanelContainer/MarginContainer/TerrainSelection"]
+layout_mode = 2
+text = "Ocean"
+
+[node name="ForestButton" type="Button" parent="PanelContainer/MarginContainer/TerrainSelection"]
+layout_mode = 2
+text = "Forest"
+
+[node name="MountainButton" type="Button" parent="PanelContainer/MarginContainer/TerrainSelection"]
+layout_mode = 2
+text = "Mountain"
+
+[node name="SnowButton" type="Button" parent="PanelContainer/MarginContainer/TerrainSelection"]
+layout_mode = 2
+text = "Snow"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/TerrainSelection/GrassButton" to="." method="_on_grass_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/TerrainSelection/SeaButton" to="." method="_on_sea_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/TerrainSelection/OceanButton" to="." method="_on_ocean_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/TerrainSelection/ForestButton" to="." method="_on_forest_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/TerrainSelection/MountainButton" to="." method="_on_mountain_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/TerrainSelection/SnowButton" to="." method="_on_snow_button_pressed"]
